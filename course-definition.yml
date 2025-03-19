@@ -1,88 +1,37 @@
-# Used in your course's URL: https://app.codecrafters.io/courses/<slug>
-# Example: "redis"
-slug: "your_course_slug"
+slug: "gleam-chess-bot"
+name: "Build your own Gleam Chess Bot"
+short_name: "Chess Bot"
+release_status: "beta"
 
-# The name of your course. This will be displayed in the course catalog, and on other course pages.
-# Example: "Build your own Redis"
-name: "Build your own something"
-
-# A short name for your course, this'll be used in copy like emails. 
-# Example: "Redis"
-short_name: "dummy"
-
-# The release status for your course. 
-#
-# - alpha: Only visible to yourself and CodeCrafters staff. 
-# - beta: Visible to all CodeCrafters users, but with a "beta" label.
-# - live: Visible to all CodeCrafters users, no label.
-# 
-# Allowed values: "alpha", "beta", "live"
-release_status: "alpha"
-
-# This is shown on the course overview page. Markdown supported, recommended length ~30 words.
-# 
-# Recommended format: 
-# 
-# > In this challenge, you'll build ABC that's capable of D, E, F and G. Along the way, we'll learn about X, Y, Z and more.
-# 
-# Example:
-# 
-# > In this challenge, you'll build a toy Redis clone that's capable of handling basic commands like PING, GET
-# > and SET. Along the way, we'll learn about event loops, the Redis Protocol and more.
 description_md: |-
-  Add a description for your course here.
+  Gleam is a functional programming language that compiles to Erlang. In this challenge
+  you'll build your own Gleam Chess Bot.
 
-# This is shown on the catalog. Plaintext only, recommended length ~10 words.
-# 
-# Recommended format: 
-# 
-# > Learn about X, Y, Z and more
-# 
-# Example: 
-#
-# > Learn about TCP servers, the Redis protocol and more
-# 
-# **TODO**: Remove _md suffix since markdown isn't supported
+  Along the way, you'll learn about functional programming, Gleam, and more.
+
 short_description_md: |-
-  Add a short description for your course here.
+  Learn about functional programming, Gleam, and more
 
-# The percentage of users who complete your course. We'll calculate this automatically in the future, safe to ignore for now.
-completion_percentage: 15
+completion_percentage: 30
 
-# The languages that your course supports.
 languages:
-  - slug: "go"
-  - slug: "python"
-  - slug: "rust"
+  - slug: "gleam"
+    release_status: "alpha"
+    alpha_tester_usernames: ["isaacharrisholt"]
 
 marketing:
-  # Shown in the catalog. 
-  # 
-  # Recommended guidelines:
-  # 
-  # - "easy": < 2h of work for an experienced developer
-  # - "medium": > 6h of work for an experienced developer
-  # - "hard": > 6h of work for an experienced developer
-  #
-  # Allowed values: "easy", "medium", "hard"
   difficulty: medium
-
-  # This is shown as an example when users suggest extensions to your course.
-  # Example: "Persistence" (from the Redis challenge)
-  sample_extension_idea_title: "My course extension idea"
-
-  # This is shown as an example when users suggest extensions to your course.
-  # Example: "A Redis server that can read and write .rdb files" (from the Redis challenge)
-  sample_extension_idea_description: "A description for my course extension idea"
-
-  # These are some default testimonials that you can use. Feel free to switch these out with your own.
+  sample_extension_idea_title: "Persistence"
+  sample_extension_idea_description: "A Redis server that can read and write .rdb files"
   testimonials:
-    - author_name: "Ananthalakshmi Sankar"
-      author_description: "Automation Engineer at Apple"
-      author_avatar: "https://codecrafters.io/images/external/testimonials/oxta.jpeg"
-      link: "https://github.com/anu294"
-      text: "There are few sites I like as much that have a step by step guide. The real-time feedback is so good, it's creepy!"
-
+    - author_name: "Charles Guo"
+      author_description: "Software Engineer, Stripe"
+      author_avatar: "https://codecrafters.io/images/external/testimonials/charles-guo.png"
+      link: "https://github.com/shaldengeki"
+      text: |-
+        The Redis challenge was extremely fun. I ended up having to read the
+        Redis Protocol specification doc pretty carefully in its entirety! The result
+        felt like lightly-guided independent study, if that makes sense. (Which, again, was lots of fun)
     - author_name: "Patrick Burris"
       author_description: "Senior Software Developer, CenturyLink"
       author_avatar: "https://codecrafters.io/images/external/testimonials/patrick-burris.jpeg"
@@ -92,37 +41,45 @@ marketing:
         Didn't even know that was possible!
 
 stages:
-  - slug: "init" # A identifier for this stage, needs to be unique within a course.
-
-    # The name of the stage. This is shown in the course catalog, and on other course pages.
-    name: "The first stage"
-
-    # The difficulty of this stage. 
-    # 
-    # Recommended guidelines, based on how long the stage will take an experienced developer to complete:
-    # 
-    # - Very Easy (< 5 minutes) 
-    # - Easy (5-10 minutes) 
-    # - Medium (30m-1h) 
-    # - Hard (> 1h)
-    # 
-    # Allowed values: "very_easy", "easy", "medium", "hard"
-    difficulty: very_easy
-
-    # The instructions for your stage. Markdown supported. Shown on the course page.
+  - slug: "jm1"
+    concept_slugs:
+      [
+        "network-protocols",
+        "tcp-overview",
+        "go-tcp-server",
+        "rust-tcp-server",
+        "python-tcp-server",
+      ]
+    name: "Bind to a port"
     description_md: |-
-      In this stage, we'll do XYZ
+      In this stage, you'll implement a TCP server that listens on port 6379.
 
-      **Example:** ABC
+      [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) is the underlying protocol used by protocols like HTTP, SSH and others
+      you're probably familiar with. Redis clients & servers use TCP to communicate with each other.
 
-      Your program will be executed like this: 
+      Don't worry if you're unfamiliar with the TCP protocol, or what Redis clients & servers are. You'll learn more about this in the
+      next stages.
+
+      ### Tests
+
+      The tester will execute your program like this:
 
       ```bash
-      $ echo "apple" | ./your_executable.sh -E "a"
+      $ ./your_program.sh
       ```
 
-      You program must ABCD.
+      It'll then try to connect to your TCP server on port 6379. If the connection succeeds, you'll pass this stage.
 
-    # A description of this stage that is used on the course overview page and other marketing material. Markdown supported.
+      ### Notes
+
+      - 6379 is the default port that Redis uses.
+      - If you already have a Redis server running on your machine and listening on port 6379, you'll see a "port already in use" error when running your code. Try stopping the existing Redis server and running your code again.
+
+      {{#reader_is_bot}}
+      - In this stage, you can assume that you only need to handle a single client. We'll get to handling multiple clients & multiple requests per client in later stages.
+      {{/reader_is_bot}}
+    difficulty: very_easy
     marketing_md: |-
-      In this stage, we'll do XYZ.
+      In this stage, you'll start a TCP server on port 6379, which is the
+      default port that Redis uses.
+    tester_source_code_url: "https://github.com/codecrafters-io/redis-tester/blob/a58b9d58b33870fe26a164c0e323f809275a7250/internal/test_bind.go#L11"
