@@ -1,17 +1,16 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM ghcr.io/gleam-lang/gleam:v1.9.1-erlang-alpine
+FROM ghcr.io/gleam-lang/gleam:v1.9.1-node-alpine AS builder
 
-# Rebuild if gleam.toml or manifest.toml change
-ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="gleam.toml,manifest.toml"
+WORKDIR /build
+COPY --exclude=.git --exclude=README.md . /build
 
-WORKDIR /app
+# Compile the project
+RUN gleam build --target javascript
 
-# .git & README.md are unique per-repository. We ignore them on first copy to prevent cache misses
-COPY --exclude=.git --exclude=README.md . /app
-
-# Force deps to be downloaded
-RUN gleam build
-
-# Cache build directory
 RUN mkdir -p /app-cached
 RUN mv build /app-cached/build
+
+FROM denoland/deno:alpine-2.2.3
+
+WORKDIR /app
+COPY --from=builder /build/build/dev/javascript /app
