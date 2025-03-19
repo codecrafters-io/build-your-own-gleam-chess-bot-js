@@ -5,12 +5,14 @@ release_status: "beta"
 
 description_md: |-
   Gleam is a functional programming language that compiles to Erlang. In this challenge
-  you'll build your own Gleam Chess Bot.
+  you'll build your own Gleam Chess Bot that can participate in chess tournaments by
+  responding to HTTP requests with chess moves.
 
-  Along the way, you'll learn about functional programming, Gleam, and more.
+  Along the way, you'll learn about HTTP servers, JSON parsing, chess programming concepts
+  and more.
 
 short_description_md: |-
-  Learn about functional programming, Gleam, and more
+  Learn about HTTP servers, chess programming and more
 
 completion_percentage: 30
 
