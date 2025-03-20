@@ -9,7 +9,3 @@
 set -e # Exit on failure
 
 gleam export erlang-shipment
-ls -la
-pwd
-
-ls -la ./build/erlang-shipment

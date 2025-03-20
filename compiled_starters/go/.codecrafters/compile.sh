@@ -8,4 +8,4 @@
 
 set -e # Exit on failure
 
-gleam export erlang-shipment
+go build -o /tmp/codecrafters-build-gleam-chess-bot-go app/*.go
