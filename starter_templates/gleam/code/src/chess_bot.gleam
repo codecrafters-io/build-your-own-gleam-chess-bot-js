@@ -15,6 +15,8 @@ pub fn main() {
   // You can use print statements as follows for debugging, they'll be visible when running tests.
   io.println("Logs from your program will appear here!")
 
+// Uncomment this block to pass the first stage
+//
 //  let assert Ok(_) =
 //    handle_request
 //    |> wisp_mist.handler(secret_key_base)
@@ -26,35 +28,31 @@ pub fn main() {
   process.sleep_forever()
 }
 
-// fn handle_request(request: Request) -> Response {
-//   case wisp.path_segments(request) {
-//     ["move"] -> handle_move(request)
-//     _ -> wisp.ok()
-//   }
-// }
+fn handle_request(request: Request) -> Response {
+  case wisp.path_segments(request) {
+    ["move"] -> handle_move(request)
+    _ -> wisp.ok()
+  }
+}
+fn move_decoder() {
+  use fen <- decode.field("fen", decode.string)
+  use turn <- decode.field("turn", chess.player_decoder())
+  use failed_moves <- decode.field("failed_moves", decode.list(decode.string))
+  decode.success(#(fen, turn, failed_moves))
+}
 
-// fn move_decoder() {
-//   use fen <- decode.field("fen", decode.string)
-//   use turn <- decode.field("turn", chess.player_decoder())
-//   use failed_moves <- decode.field("failed_moves", decode.list(decode.string))
-//   decode.success(#(fen, turn, failed_moves))
-// }
-
-
-// Uncomment this block to pass the first stage
-//
-// fn handle_move(request: Request) -> Response {
-//   use body <- wisp.require_string_body(request)
-//   let decode_result = json.parse(body, move_decoder())
-//   case decode_result {
-//     Error(_) -> wisp.bad_request()
-//     Ok(move) -> {
-//       let move_result = chess.move(move.0, move.1, move.2)
-//       case move_result {
-//         Ok(move) -> wisp.ok() |> wisp.string_body(move)
-//         Error(reason) ->
-//           wisp.internal_server_error() |> wisp.string_body(reason)
-//       }
-//     }
-//   }
-// }
+fn handle_move(request: Request) -> Response {
+  use body <- wisp.require_string_body(request)
+  let decode_result = json.parse(body, move_decoder())
+  case decode_result {
+    Error(_) -> wisp.bad_request()
+    Ok(move) -> {
+      let move_result = chess.move(move.0, move.1, move.2)
+      case move_result {
+        Ok(move) -> wisp.ok() |> wisp.string_body(move)
+        Error(reason) ->
+          wisp.internal_server_error() |> wisp.string_body(reason)
+      }
+    }
+  }
+}
