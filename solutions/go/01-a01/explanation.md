@@ -4,7 +4,8 @@ Study and uncomment the relevant code:
 
 ```go
 // Uncomment this block to pass the first stage
-fmt.Println("Implement code here!")
+
+fmt.Println("Logs from your program will appear here!")
 ```
 
 Push your changes to pass the first stage:
