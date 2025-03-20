@@ -6,6 +6,7 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-set -e # Exit on failure
+# set -e # Exit on failure
 
-gleam build
+# gleam build
+# It's already built

@@ -8,4 +8,7 @@
 
 set -e # Exit on failure
 
-exec gleam run --module main -- "$@"
+ls -la
+pwd
+# exec gleam run --module main -- "$@"
+exec ./build/erlang-shipment/entrypoint.sh run -- "$@"
