@@ -5,21 +5,13 @@ Study and uncomment the relevant code:
 ```gleam
 // Uncomment this block to pass the first stage
 
-fn handle_move(request: Request) -> Response {
-  use body <- wisp.require_string_body(request)
-  let decode_result = json.parse(body, move_decoder())
-  case decode_result {
-    Error(_) -> wisp.bad_request()
-    Ok(move) -> {
-      let move_result = chess.move(move.0, move.1, move.2)
-      case move_result {
-        Ok(move) -> wisp.ok() |> wisp.string_body(move)
-        Error(reason) ->
-          wisp.internal_server_error() |> wisp.string_body(reason)
-      }
-    }
-  }
-}
+ let assert Ok(_) =
+   handle_request
+   |> wisp_mist.handler(secret_key_base)
+   |> mist.new
+   |> mist.bind("0.0.0.0")
+   |> mist.port(8000)
+   |> mist.start_http
 ```
 
 Push your changes to pass the first stage:

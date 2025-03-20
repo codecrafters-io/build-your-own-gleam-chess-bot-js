@@ -1,7 +1,5 @@
 # syntax=docker/dockerfile:1.7-labs
-############################################################################## 
-# Erlang target
-FROM ghcr.io/gleam-lang/gleam:v1.9.1-erlang-alpine AS erlang_builder
+FROM ghcr.io/gleam-lang/gleam:v1.9.1-erlang-alpine
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="gleam.toml,manifest.toml"
 

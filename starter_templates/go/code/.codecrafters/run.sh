@@ -7,4 +7,5 @@
 # Learn more: https://codecrafters.io/program-interface
 
 set -e # Exit on failure
-exec ./build/erlang-shipment/entrypoint.sh run "$@"
+
+exec /tmp/codecrafters-build-gleam-chess-bot-go "$@"

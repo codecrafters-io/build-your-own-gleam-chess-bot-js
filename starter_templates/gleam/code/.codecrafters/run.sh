@@ -7,5 +7,4 @@
 # Learn more: https://codecrafters.io/program-interface
 
 set -e # Exit on failure
-cd build
-exec ./erlang-shipment/entrypoint.sh run "$@"
+exec ./build/erlang-shipment/entrypoint.sh run "$@"
