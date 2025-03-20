@@ -16,6 +16,3 @@ FROM erlang:alpine
 WORKDIR /app
 COPY --from=erlang_builder /app-cached /app
 # COPY --from=erlang_builder /app-cached /app ???
-
-RUN ls -la 
-RUN pwd
