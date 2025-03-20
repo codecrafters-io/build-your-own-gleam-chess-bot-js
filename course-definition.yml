@@ -43,7 +43,7 @@ marketing:
         Didn't even know that was possible!
 
 stages:
-  - slug: "jm1"
+  - slug: "a01"
     concept_slugs:
       [
         "network-protocols",
@@ -52,7 +52,7 @@ stages:
         "rust-tcp-server",
         "python-tcp-server",
       ]
-    name: "Bind to a port"
+    name: "Respond to move request"
     description_md: |-
       In this stage, you'll implement a TCP server that listens on port 6379.
 
