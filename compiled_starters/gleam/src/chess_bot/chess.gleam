@@ -19,6 +19,5 @@ pub fn move(
   turn: Player,
   failed_moves: List(String),
 ) -> Result(String, String) {
-  // TODO: Implement the logic to generate a valid move
   Ok("e4")
 }

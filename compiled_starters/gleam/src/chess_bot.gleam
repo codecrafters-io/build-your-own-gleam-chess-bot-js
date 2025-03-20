@@ -1,8 +1,8 @@
-import gleam/io
-
 import chess_bot/chess
+
 import gleam/dynamic/decode
 import gleam/erlang/process
+import gleam/io
 import gleam/json
 import mist
 import wisp.{type Request, type Response}
