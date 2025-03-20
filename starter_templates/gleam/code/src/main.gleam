@@ -1,6 +1,6 @@
 import gleam/io
 
-import chess_bot/chess
+import main/chess
 import gleam/dynamic/decode
 import gleam/erlang/process
 import gleam/json

@@ -1,4 +1,4 @@
-name = "chess_bot"
+name = "main"
 version = "1.0.0"
 target = "erlang"
 
