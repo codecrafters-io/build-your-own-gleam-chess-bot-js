@@ -6,7 +6,10 @@
 #
 # Learn more: https://codecrafters.io/program-interface
 
-# set -e # Exit on failure
+set -e # Exit on failure
 
-# gleam build
-# It's already built
+gleam export erlang-shipment
+ls -la
+pwd
+
+ls -la ./build/erlang-shipment
