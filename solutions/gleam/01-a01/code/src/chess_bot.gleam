@@ -37,17 +37,30 @@ fn move_decoder() {
 }
 
 fn handle_move(request: Request) -> Response {
+  io.println("Received move request")
+
   use body <- wisp.require_string_body(request)
+  io.println("Request body: " <> body)
+
   let decode_result = json.parse(body, move_decoder())
   case decode_result {
-    Error(_) -> wisp.bad_request()
+    Error(_) -> {
+      io.println("Failed to decode JSON")
+      wisp.bad_request()
+    }
     Ok(move) -> {
+      io.println("Successfully decoded move")
       let move_result = chess.move(move.0, move.1, move.2)
       case move_result {
-        Ok(move) -> wisp.ok() |> wisp.string_body(move)
-        Error(reason) ->
+        Ok(move) -> {
+          io.println("Move successful: " <> move)
+          wisp.ok() |> wisp.string_body(move)
+        }
+        Error(reason) -> {
+          io.println("Move failed: " <> reason)
           wisp.internal_server_error() |> wisp.string_body(reason)
+        }
       }
     }
-  }
+ }
 }
