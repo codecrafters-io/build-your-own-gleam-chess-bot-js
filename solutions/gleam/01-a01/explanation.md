@@ -1,6 +1,6 @@
 The entry point for your Chess Bot implementation is in `src/chess_bot.gleam`.
 
-Study and uncomment the relevant code: 
+Study and uncomment the relevant code:
 
 ```gleam
 // Uncomment this block to pass the first stage
