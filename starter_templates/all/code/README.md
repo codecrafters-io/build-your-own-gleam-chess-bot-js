@@ -12,8 +12,9 @@ event loops, the Redis protocol and more.
 
 # Passing the first stage
 
-The entry point for your Redis implementation is in `{{ user_editable_file }}`. Study and uncomment the relevant code, and
-push your changes to pass the first stage:
+The entry point for your Redis implementation is in `{{ user_editable_file }}`.
+Study and uncomment the relevant code, and push your changes to pass the first
+stage:
 
 ```sh
 git commit -am "pass 1st stage" # any msg
@@ -61,5 +62,4 @@ might be running an older version.
 You can fix this by installing Python 3.8 locally and using that.
 
 If you'd like to use a different version of Python, change the `language_pack`
-value in `codecrafters.yml`.
-{{/language_is_python}}
+value in `codecrafters.yml`. {{/language_is_python}}
