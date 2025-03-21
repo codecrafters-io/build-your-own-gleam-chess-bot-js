@@ -24,8 +24,8 @@ pub fn main() {
 //    |> mist.bind("0.0.0.0")
 //    |> mist.port(8000)
 //    |> mist.start_http
-
-  process.sleep_forever()
+//
+//  process.sleep_forever()
 }
 
 fn handle_request(request: Request) -> Response {

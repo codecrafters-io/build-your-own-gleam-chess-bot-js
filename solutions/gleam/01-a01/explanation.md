@@ -12,6 +12,8 @@ Study and uncomment the relevant code:
    |> mist.bind("0.0.0.0")
    |> mist.port(8000)
    |> mist.start_http
+
+ process.sleep_forever()
 ```
 
 Push your changes to pass the first stage:

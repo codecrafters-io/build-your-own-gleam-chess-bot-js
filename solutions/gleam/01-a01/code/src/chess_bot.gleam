@@ -20,7 +20,7 @@ pub fn main() {
    |> mist.port(8000)
    |> mist.start_http
 
-  process.sleep_forever()
+ process.sleep_forever()
 }
 
 fn handle_request(request: Request) -> Response {
