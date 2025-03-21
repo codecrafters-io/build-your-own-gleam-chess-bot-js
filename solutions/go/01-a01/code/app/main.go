@@ -10,14 +10,12 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"github.com/corentings/chess"
 	"fmt"
 
-	"github.com/corentings/chess"
 )
 
 func main() {
-	fmt.Println("Logs from your program will appear here!")
-
 	server := &http.Server{
 		Addr: ":8000",
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +43,7 @@ func main() {
 					return
 				}
 			}
-
+			fmt.Println(fen)
 			game := chess.NewGame(fen)
 			moves := game.ValidMoves()
 
@@ -56,11 +54,9 @@ func main() {
 		WriteTimeout: 5 * time.Second,
 		IdleTimeout:  60 * time.Second,
 	}
-
 	// Channel to listen for interrupt signals
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
-
 	// Run server in a goroutine
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
@@ -68,14 +64,11 @@ func main() {
 			os.Exit(1)
 		}
 	}()
-
 	// Wait for interrupt signal
 	<-stop
-
 	// Create shutdown context with timeout
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-
 	// Attempt graceful shutdown
 	if err := server.Shutdown(ctx); err != nil {
 		log.Printf("Error during server shutdown: %v\n", err)
