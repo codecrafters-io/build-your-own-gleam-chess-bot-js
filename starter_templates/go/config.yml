@@ -1,3 +1,0 @@
-attributes:
-  required_executable: go (1.24)
-  user_editable_file: app/main.go
