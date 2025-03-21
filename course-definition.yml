@@ -8,8 +8,8 @@ description_md: |-
   you'll build your own Gleam Chess Bot that can participate in chess tournaments by
   responding to HTTP requests with chess moves.
 
-  Along the way, you'll learn about HTTP servers, JSON parsing, chess programming concepts
-  and more.
+  Along the way, you'll learn about HTTP servers, JSON parsing, chess programming 
+  concepts and more.
 
 short_description_md: |-
   Learn about HTTP servers, chess programming and more
@@ -23,8 +23,8 @@ languages:
 
 marketing:
   difficulty: medium
-  sample_extension_idea_title: "Persistence"
-  sample_extension_idea_description: "A Redis server that can read and write .rdb files"
+  sample_extension_idea_title: "Chess Bot"
+  sample_extension_idea_description: "A Gleam Chess Bot that can participate in chess tournaments by responding to HTTP requests with chess moves"
   testimonials:
     - author_name: "Charles Guo"
       author_description: "Software Engineer, Stripe"
@@ -44,44 +44,123 @@ marketing:
 
 stages:
   - slug: "a01"
-    concept_slugs:
-      [
-        "network-protocols",
-        "tcp-overview",
-        "go-tcp-server",
-        "rust-tcp-server",
-        "python-tcp-server",
-      ]
-    name: "Respond to move request"
+    name: "Respond to /move request"
     description_md: |-
-      In this stage, you'll implement a TCP server that listens on port 6379.
-
-      [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) is the underlying protocol used by protocols like HTTP, SSH and others
-      you're probably familiar with. Redis clients & servers use TCP to communicate with each other.
-
-      Don't worry if you're unfamiliar with the TCP protocol, or what Redis clients & servers are. You'll learn more about this in the
-      next stages.
-
-      ### Tests
-
-      The tester will execute your program like this:
-
-      ```bash
-      $ ./your_program.sh
+      In this stage, you'll implement a basic HTTP server that responds to POST requests at the `/move` endpoint.
+      
+      The server should accept JSON requests in the following format:
+      
+      ```json
+      {
+        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "turn": "white",
+        "failed_moves": []
+      }
       ```
-
-      It'll then try to connect to your TCP server on port 6379. If the connection succeeds, you'll pass this stage.
-
+      
+      For this stage, you can simply respond with a hardcoded legal chess move in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), such as "e4".
+      
+      ### Tests
+      
+      The tester will send a POST request to your server at `http://localhost:8000/move` with a valid chess position.
+      Your server should respond with a 200 OK status code and a valid chess move in the response body.
+      
       ### Notes
-
-      - 6379 is the default port that Redis uses.
-      - If you already have a Redis server running on your machine and listening on port 6379, you'll see a "port already in use" error when running your code. Try stopping the existing Redis server and running your code again.
-
-      {{#reader_is_bot}}
-      - In this stage, you can assume that you only need to handle a single client. We'll get to handling multiple clients & multiple requests per client in later stages.
-      {{/reader_is_bot}}
-    difficulty: very_easy
+      
+      - The server must listen on port 8000
+      - The response should be a plain text string containing just the move
+      - Invalid requests should return appropriate HTTP error codes (400 for bad requests)
+    difficulty: easy
     marketing_md: |-
-      In this stage, you'll start a TCP server on port 6379, which is the
-      default port that Redis uses.
-    tester_source_code_url: "https://github.com/codecrafters-io/redis-tester/blob/a58b9d58b33870fe26a164c0e323f809275a7250/internal/test_bind.go#L11"
+      In this stage, you'll create a basic HTTP server that can respond to chess move requests.
+
+  - slug: "a02"
+    name: "Respond with an opening"
+    description_md: |-
+      Now that your server can respond to move requests, let's make it play some real chess!
+      
+      In this stage, you'll implement a simple opening strategy. Your bot should:
+      
+      1. Parse the FEN string to understand the current board position
+      2. Check if it's playing as white or black
+      3. Make a valid opening move based on the position
+      
+      For example, as white you might want to play 1.e4, and as black you might respond to 1.e4 with 1...e5.
+      
+      ### Tests
+      
+      The tester will send multiple positions from common chess openings. Your bot must respond with legal moves
+      that follow basic chess rules.
+      
+      ### Notes
+      
+      - The move must be legal according to chess rules
+      - The move must be in SAN notation
+      - If a move is not legal, it will be added to the failed_moves list in subsequent requests
+    difficulty: medium
+    marketing_md: |-
+      Make your bot play real chess moves by implementing a simple opening strategy.
+
+  - slug: "a03"
+    name: "Bratko-Kopec test"
+    description_md: |-
+      The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a famous test position set
+      used to evaluate chess engines. In this stage, your bot will face some of these tactical positions.
+      
+      You'll need to implement more sophisticated move selection logic to handle these positions. Some approaches
+      you might consider:
+      
+      1. Material counting
+      2. Position evaluation
+      3. Simple search algorithms
+      4. Pattern matching for tactical motifs
+      
+      ### Tests
+      
+      Your bot will be tested against a selection of Bratko-Kopec test positions. It must find good moves
+      that maintain or improve its position.
+      
+      ### Notes
+      
+      - The positions will be complex tactical positions
+      - Your bot should aim to find moves that maintain material equality or gain material
+      - Simple material counting may not be sufficient - consider piece activity and position
+    difficulty: hard
+    marketing_md: |-
+      Test your bot's tactical abilities against the famous Bratko-Kopec test positions.
+
+  - slug: "a04"
+    name: "Win at Chess"
+    description_md: |-
+      In this final stage, your bot will play complete chess games against other bots. To succeed,
+      you'll need to implement a strong chess engine that can:
+      
+      1. Search multiple moves ahead
+      2. Evaluate positions accurately
+      3. Manage its time effectively
+      4. Play a complete game from opening to endgame
+      
+      Some techniques you might want to implement:
+      
+      - Minimax search with alpha-beta pruning
+      - Position evaluation considering:
+        - Material
+        - Piece activity
+        - King safety
+        - Pawn structure
+      - Opening book
+      - Endgame tablebases
+      
+      ### Tests
+      
+      Your bot will play complete games against test positions and other bots. It must demonstrate
+      good strategic understanding and tactical ability.
+      
+      ### Notes
+      
+      - Games will be played with standard chess time controls
+      - Your bot must make moves within the 5 second time limit
+      - The bot that checkmates or wins on time will be the winner
+    difficulty: very_hard
+    marketing_md: |-
+      Create a complete chess engine that can play and win full games.
