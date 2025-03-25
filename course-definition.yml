@@ -16,11 +16,6 @@ short_description_md: |-
 
 completion_percentage: 30
 
-completion_message_markdown: |-
-  You've completed the Gleam Chess Bot course!
-  Congrats, you're enrolled!
-  Watch out for Isaac's next video.
-
 languages:
   - slug: "gleam"
     release_status: "alpha"
