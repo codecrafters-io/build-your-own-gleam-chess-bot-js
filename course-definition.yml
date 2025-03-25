@@ -16,6 +16,11 @@ short_description_md: |-
 
 completion_percentage: 30
 
+completion_message_markdown: |-
+  You've completed the Gleam Chess Bot course!
+  Congrats, you're enrolled!
+  Watch out for Isaac's next video.
+
 languages:
   - slug: "gleam"
     release_status: "alpha"
@@ -45,6 +50,7 @@ marketing:
 stages:
   - slug: "a01"
     name: "Respond to /move request"
+    difficulty: easy
     description_md: |-
       In this stage, you'll implement a basic HTTP server that responds to POST requests at the `/move` endpoint.
       
@@ -70,12 +76,12 @@ stages:
       - The server must listen on port 8000
       - The response should be a plain text string containing just the move
       - Invalid requests should return appropriate HTTP error codes (400 for bad requests)
-    difficulty: easy
     marketing_md: |-
       In this stage, you'll create a basic HTTP server that can respond to chess move requests.
 
   - slug: "a02"
     name: "Respond with an opening"
+    difficulty: medium
     description_md: |-
       Now that your server can respond to move requests, let's make it play some real chess!
       
@@ -97,12 +103,12 @@ stages:
       - The move must be legal according to chess rules
       - The move must be in SAN notation
       - If a move is not legal, it will be added to the failed_moves list in subsequent requests
-    difficulty: medium
     marketing_md: |-
       Make your bot play real chess moves by implementing a simple opening strategy.
 
   - slug: "a03"
     name: "Bratko-Kopec test"
+    difficulty: hard
     description_md: |-
       The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a famous test position set
       used to evaluate chess engines. In this stage, your bot will face some of these tactical positions.
@@ -125,12 +131,12 @@ stages:
       - The positions will be complex tactical positions
       - Your bot should aim to find moves that maintain material equality or gain material
       - Simple material counting may not be sufficient - consider piece activity and position
-    difficulty: hard
     marketing_md: |-
       Test your bot's tactical abilities against the famous Bratko-Kopec test positions.
 
   - slug: "a04"
     name: "Win at Chess"
+    difficulty: very_hard
     description_md: |-
       In this final stage, your bot will play complete chess games against other bots. To succeed,
       you'll need to implement a strong chess engine that can:
@@ -161,6 +167,5 @@ stages:
       - Games will be played with standard chess time controls
       - Your bot must make moves within the 5 second time limit
       - The bot that checkmates or wins on time will be the winner
-    difficulty: very_hard
     marketing_md: |-
       Create a complete chess engine that can play and win full games.
