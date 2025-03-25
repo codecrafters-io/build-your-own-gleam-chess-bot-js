@@ -131,7 +131,7 @@ stages:
 
   - slug: "a04"
     name: "Win at Chess"
-    difficulty: very_hard
+    difficulty: hard
     description_md: |-
       In this final stage, your bot will play complete chess games against other bots. To succeed,
       you'll need to implement a strong chess engine that can:
