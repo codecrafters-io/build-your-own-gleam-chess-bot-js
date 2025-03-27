@@ -15,9 +15,9 @@ pub fn player_decoder() {
 }
 
 pub fn move(
-  fen: String,
-  turn: Player,
-  failed_moves: List(String),
+  _fen: String,
+  _turn: Player,
+  _failed_moves: List(String),
 ) -> Result(String, String) {
-  Ok("e4")
+  Ok("e0")
 }

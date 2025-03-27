@@ -10,6 +10,8 @@ import wisp/wisp_mist
 
 pub fn main() {
   wisp.configure_logger()
+  wisp.set_logger_level(wisp.CriticalLevel)
+
   let secret_key_base = wisp.random_string(64)
 
  let assert Ok(_) =
