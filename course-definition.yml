@@ -2,6 +2,7 @@ slug: "gleam-chess-bot"
 name: "Build your own Gleam Chess Bot"
 short_name: "Chess Bot"
 release_status: "alpha"
+visibility: "private"
 
 description_md: |-
   Gleam is a functional programming language that compiles to Erlang. In this challenge
