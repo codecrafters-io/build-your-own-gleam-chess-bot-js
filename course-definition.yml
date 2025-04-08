@@ -4,27 +4,29 @@ short_name: "Chess Bot"
 release_status: "beta"
 visibility: "private"
 
+# TODO: Isaac to review, this appears on:
+# - The unauthed course overview page (https://app.codecrafters.io/courses/gleam-chess-bot/overview)
+# - The "Introduction" page when logged in (https://app.codecrafters.io/courses/gleam-chess-bot/introduction)
 description_md: |-
-  Build a powerful chess bot in Gleam that analyzes positions and calculates strategic moves! This challenge focuses on chess engine implementation rather than server infrastructure.
+  Welcome to the inaugural [Unofficial Gleam Chess Tournament](https://github.com/isaacharrisholt/gleam-chess-tournament)!
 
-  You'll master:
-  - Functional programming with Gleam's type system
-  - Chess position analysis and move generation
-  - Position evaluation techniques
-  - Search algorithms like minimax with alpha-beta pruning
-  - Opening theory and endgame strategy
+  This is a friendly competition to see who can create the best chess bot in the [Gleam programming language](https://gleam.run). Once submissions
+  are closed, the tournament will be turned into a Twitch stream or YouTube video on [my channel](https://www.youtube.com/IsaacHarrisHolt).
 
-  Starting with simple move validation and progressing to complex tactical analysis, you'll create a bot capable of competing in tournaments. Perfect for programmers interested in game AI or chess enthusiasts wanting to understand engine development.
+  When you complete this CodeCrafters challenge, you'll automatically be enrolled in the tournament.
 
 short_description_md: |-
-  Learn about chess programming, functional programming, and more
+  Build a chess bot in Gleam
 
-completion_percentage: 20
+completion_percentage: 5
 
+# TODO: Isaac to review, this is what we show users once they mark the last stage as complete.
 completion_message_markdown: |-
   You've completed the Gleam Chess Bot challenge!
-  Congrats, you're enrolled in Isaac's competitive chess tournament!
-  Watch out for Isaac's next video.
+
+  You're now enrolled in in the tournament.
+
+  Watch out for [Isaac's next video](https://www.youtube.com/IsaacHarrisHolt) on the tournament.
 
 languages:
   - slug: "gleam"
@@ -35,6 +37,8 @@ marketing:
   difficulty: medium
   sample_extension_idea_title: "Chess Bot"
   sample_extension_idea_description: "A Gleam Chess Bot that can participate in chess tournaments by responding to HTTP requests with chess moves"
+
+  # TODO: Isaac to review, this is what we show on the overview page. You can either keep the default CC ones below or customize for yourself.
   testimonials:
     - author_name: "Charles Guo"
       author_description: "Software Engineer, Stripe"
@@ -58,9 +62,11 @@ stages:
     difficulty: easy
     description_md: |-
       In this stage, you'll implement a basic HTTP server that responds to POST requests at the `/move` endpoint.
-      
+
+      ### The /move endpoint
+
       The server should accept JSON requests in the following format:
-      
+
       ```json
       {
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -68,19 +74,25 @@ stages:
         "failed_moves": []
       }
       ```
-      
-      For this stage, you can simply respond with a hardcoded legal chess move in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), such as "e4".
-      
+
+      Here are what the fields mean:
+
+      - `fen`: The current state of the board in [Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
+      - `turn`: Whose turn it is to move. Either "white" or "black".
+      - `failed_moves`: A list of moves that your bot attempted to make for this turn, but were not legal moves.
+
+      To pass this stage you can respond with a hardcoded legal chess move in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), such as "e4".
+
       ### Tests
-      
+
       The tester will send a POST request to your server at `http://localhost:8000/move` with a valid chess position.
+
       Your server should respond with a 200 OK status code and a valid chess move in the response body.
-      
+
       ### Notes
-      
+
       - The server must listen on port 8000
       - The response should be a plain text string containing just the move
-      - Invalid requests should return appropriate HTTP error codes (400 for bad requests)
     marketing_md: |-
       In this stage, you'll create a basic HTTP server that can respond to chess move requests.
 
@@ -88,26 +100,28 @@ stages:
     name: "Respond with an opening"
     difficulty: medium
     description_md: |-
-      Now that your server can respond to move requests, let's make it play some real chess!
-      
-      In this stage, you'll implement a simple opening strategy. Your bot should:
-      
-      1. Parse the FEN string to understand the current board position
+      In this stage, you'll implement a simple opening strategy.
+
+      ### How to respond with an opening
+
+      Your bot should:
+
+      1. Parse the [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) string to understand the current board position
       2. Check if it's playing as white or black
       3. Make a valid opening move based on the position
-      
+
       For example, as white you might want to play 1.e4, and as black you might respond to 1.e4 with 1...e5.
-      
+
       ### Tests
-      
+
       The tester will send multiple positions from common chess openings. Your bot must respond with legal moves
       that follow basic chess rules.
-      
+
       ### Notes
-      
+
       - The move must be legal according to chess rules
-      - The move must be in SAN notation
-      - If a move is not legal, it will be added to the failed_moves list in subsequent requests
+      - The move must be in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess))
+      - If a move is not legal, it will be added to the `failed_moves` list in subsequent requests
     marketing_md: |-
       Make your bot play real chess moves by implementing a simple opening strategy.
 
@@ -115,24 +129,30 @@ stages:
     name: "Bratko-Kopec test"
     difficulty: hard
     description_md: |-
+      In this stage, your bot will be tested against some of the [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) positions.
+
+      ### Bratko-Kopec test
+
       The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a famous test position set
-      used to evaluate chess engines. In this stage, your bot will face some of these tactical positions.
-      
-      You'll need to implement more sophisticated move selection logic to handle these positions. Some approaches
+      used to evaluate chess engines.
+
+      To pass these tests, you'll need to implement more sophisticated move selection logic. Some approaches
       you might consider:
-      
-      1. Material counting
-      2. Position evaluation
-      3. Simple search algorithms
-      4. Pattern matching for tactical motifs
-      
+
+      - Material counting
+      - Position evaluation
+      - Simple search algorithms
+      - Pattern matching for tactical motifs
+
+      <!-- TODO: Isaac to review, we weren't super sure of this list -->
+
       ### Tests
-      
+
       Your bot will be tested against a selection of Bratko-Kopec test positions. It must find good moves
       that maintain or improve its position.
-      
+
       ### Notes
-      
+
       - The positions will be complex tactical positions
       - Your bot should aim to find moves that maintain material equality or gain material
       - Simple material counting may not be sufficient - consider piece activity and position
@@ -143,16 +163,15 @@ stages:
     name: "Win at Chess"
     difficulty: hard
     description_md: |-
-      In this final stage, your bot will play complete chess games against other bots. To succeed,
-      you'll need to implement a strong chess engine that can:
-      
-      1. Search multiple moves ahead
-      2. Evaluate positions accurately
-      3. Manage its time effectively
-      4. Play a complete game from opening to endgame
-      
-      Some techniques you might want to implement:
-      
+      In this final stage, your bot will be tested against some of the [Win at Chess](https://www.chessprogramming.org/Win_at_Chess) positions.
+
+      ### Win at Chess
+
+      The [Win at Chess](https://www.chessprogramming.org/Win_at_Chess) positions are a set of test positions that are commonly
+      used to evaluate chess engines.
+
+      Some techniques you might want to implement to pass these tests:
+
       - Minimax search with alpha-beta pruning
       - Position evaluation considering:
         - Material
@@ -161,16 +180,16 @@ stages:
         - Pawn structure
       - Opening book
       - Endgame tablebases
-      
+
+      <!-- TODO: Isaac to review, we weren't super sure of this list -->
+
       ### Tests
-      
-      Your bot will play complete games against test positions and other bots. It must demonstrate
-      good strategic understanding and tactical ability.
-      
+
+      The tester will test your bot against a selection of Win at Chess positions.
+
       ### Notes
-      
+
       - Games will be played with standard chess time controls
       - Your bot must make moves within the 5 second time limit
-      - The bot that checkmates or wins on time will be the winner
     marketing_md: |-
       Create a complete chess engine that can play and win full games.
