@@ -1,7 +1,7 @@
-![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/redis.png)
+![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/gleam-chess-bot.png)
 
 This is a starting point for Gleam solutions to the
-["Build Your Own Redis" Challenge](https://codecrafters.io/challenges/redis).
+["Build Your Own Gleam Chess Bot" Challenge](https://codecrafters.io/challenges/gleam-chess-bot).
 
 In this challenge, you'll build a toy Redis clone that's capable of handling
 basic commands like `PING`, `SET` and `GET`. Along the way we'll learn about
