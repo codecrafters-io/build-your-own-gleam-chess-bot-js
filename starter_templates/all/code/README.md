@@ -34,32 +34,3 @@ Note: This section is for stages 2 and beyond.
    will be fast.{{/ language_is_rust}}
 1. Commit your changes and run `git push origin master` to submit your solution
    to CodeCrafters. Test output will be streamed to your terminal.
-
-{{#language_is_python}}
-
-# Troubleshooting
-
-## module `socket` has no attribute `create_server`
-
-When running your server locally, you might see an error like this:
-
-```
-Traceback (most recent call last):
-  File "/.../python3.7/runpy.py", line 193, in _run_module_as_main
-    "__main__", mod_spec)
-  File "/.../python3.7/runpy.py", line 85, in _run_code
-    exec(code, run_globals)
-  File "/app/app/main.py", line 11, in <module>
-    main()
-  File "/app/app/main.py", line 6, in main
-    s = socket.create_server(("localhost", 6379), reuse_port=True)
-AttributeError: module 'socket' has no attribute 'create_server'
-```
-
-This is because `socket.create_server` was introduced in Python 3.8, and you
-might be running an older version.
-
-You can fix this by installing Python 3.8 locally and using that.
-
-If you'd like to use a different version of Python, change the `language_pack`
-value in `codecrafters.yml`. {{/language_is_python}}
