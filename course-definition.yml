@@ -199,8 +199,10 @@ stages:
     difficulty: easy
     description_md: |-
       In this stage, you'll finalize your submission for the tournament.
+
       There is an `example.ENTRY.md` file in the starter code that was provided. You will need to rename the file to `ENTRY.md` and fill in the required fields. 
       You need to mention your name, email and the URL to your repository.
+
       If you don't intend to participate in the tournament, you don't need to fill the details.
 
       ### Tests

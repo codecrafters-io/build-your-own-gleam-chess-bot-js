@@ -3,9 +3,8 @@
 This is a starting point for {{language_name}} solutions to the
 ["Build Your Own Gleam Chess Bot" Challenge](https://codecrafters.io/challenges/gleam-chess-bot).
 
-In this challenge, you'll build a toy Redis clone that's capable of handling
-basic commands like `PING`, `SET` and `GET`. Along the way we'll learn about
-event loops, the Redis protocol and more.
+In this challenge, you'll build a chess bot that's capable of parsing FEN
+strings and making valid chess moves.
 
 **Note**: If you're viewing this repo on GitHub, head over to
 [codecrafters.io](https://codecrafters.io) to try the challenge.
@@ -28,7 +27,7 @@ That's all!
 Note: This section is for stages 2 and beyond.
 
 1. Ensure you have `{{ required_executable }}` installed locally
-1. Run `./your_program.sh` to run your Redis server, which is implemented in
+1. Run `./your_program.sh` to run your chess bot, which is implemented in
    `{{ user_editable_file }}`.{{# language_is_rust }} This command compiles your
    Rust project, so it might be slow the first time you run it. Subsequent runs
    will be fast.{{/ language_is_rust}}
