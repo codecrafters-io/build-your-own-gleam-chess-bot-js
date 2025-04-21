@@ -1,12 +1,15 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM ghcr.io/gleam-lang/gleam:v1.9.1-erlang-alpine
+FROM ghcr.io/gleam-lang/gleam:v1.9.1-node-slim
 
 ENV CODECRAFTERS_DEPENDENCY_FILE_PATHS="gleam.toml,manifest.toml"
 
 WORKDIR /app
 COPY --exclude=.git --exclude=README.md . /app
 
-RUN gleam export erlang-shipment
+RUN gleam deps download
+RUN gleam build --target javascript
+
+RUN npm install -g deno
 
 # Cache build directory
 RUN mkdir -p /app-cached
