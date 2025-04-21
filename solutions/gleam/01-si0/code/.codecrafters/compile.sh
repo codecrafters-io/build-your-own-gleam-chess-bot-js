@@ -10,5 +10,3 @@ set -e # Exit on failure
 
 gleam deps download
 gleam build --target javascript
-echo "main()" >> build/dev/javascript/chess_bot/chess_bot.mjs
-deno --allow-net build/dev/javascript/chess_bot/chess_bot.mjs
