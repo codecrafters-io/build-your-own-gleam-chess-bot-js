@@ -16,6 +16,8 @@ set -e # Exit early if any commands fail
   cd "$(dirname "$0")" # Ensure compile steps are run within the repository directory
   gleam deps download
   gleam build --target javascript
+  echo "main()" >> build/dev/javascript/chess_bot/chess_bot.mjs
+  deno --allow-net build/dev/javascript/chess_bot/chess_bot.mjs
 )
 
 # Copied from .codecrafters/run.sh
