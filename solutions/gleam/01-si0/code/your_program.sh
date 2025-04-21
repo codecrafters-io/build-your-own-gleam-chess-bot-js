@@ -14,11 +14,12 @@ set -e # Exit early if any commands fail
 # - Edit .codecrafters/compile.sh to change how your program compiles remotely
 (
   cd "$(dirname "$0")" # Ensure compile steps are run within the repository directory
-  gleam export erlang-shipment
+  gleam deps download
+  gleam build --target javascript
 )
 
 # Copied from .codecrafters/run.sh
 #
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
-exec ./build/erlang-shipment/entrypoint.sh run "$@"
+exec deno run --allow-net ./build/dev/javascript/chess_bot/chess_bot.mjs

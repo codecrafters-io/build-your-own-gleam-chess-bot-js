@@ -1,112 +1,42 @@
-@@ -1,67 +1,62 @@
- import chess_bot/chess
-
+@@ -1,40 +1,35 @@
  import gleam/dynamic/decode
- import gleam/erlang/process
- import gleam/io
+ import gleam/javascript/promise.{type Promise}
  import gleam/json
- import mist
- import wisp.{type Request, type Response}
- import wisp/wisp_mist
+ import glen
+ import glen/status
+ import chess_bot/chess
+ import gleam/io
 
  pub fn main() {
-   wisp.configure_logger()
-   wisp.set_logger_level(wisp.CriticalLevel)
-
-   let secret_key_base = wisp.random_string(64)
-
 -  // You can use print statements as follows for debugging, they'll be visible when running tests.
 -  io.println("Logs from your program will appear here!")
-+ let assert Ok(_) =
-+   handle_request
-+   |> wisp_mist.handler(secret_key_base)
-+   |> mist.new
-+   |> mist.bind("0.0.0.0")
-+   |> mist.port(8000)
-+   |> mist.start_http
-
--// Uncomment this block to pass the first stage
--//
--//  let assert Ok(_) =
--//    handle_request
--//    |> wisp_mist.handler(secret_key_base)
--//    |> mist.new
--//    |> mist.bind("0.0.0.0")
--//    |> mist.port(8000)
--//    |> mist.start_http
--//
--//  process.sleep_forever()
--//}
--// 
--// fn handle_request(request: Request) -> Response {
--//   case wisp.path_segments(request) {
--//     ["move"] -> handle_move(request)
--//     _ -> wisp.ok()
--//   }
--// }
--// fn move_decoder() {
--//   use fen <- decode.field("fen", decode.string)
--//   use turn <- decode.field("turn", chess.player_decoder())
--//   use failed_moves <- decode.field("failed_moves", decode.list(decode.string))
--//   decode.success(#(fen, turn, failed_moves))
--// }
--// 
--// fn handle_move(request: Request) -> Response {
--//   use body <- wisp.require_string_body(request)
--//   
--//   let decode_result = json.parse(body, move_decoder())
--//   case decode_result {
--//     Error(_) -> {
--//       io.println("Failed to decode JSON")
--//       wisp.bad_request()
--//     }
--//     Ok(move) -> {
--//       let move_result = chess.move(move.0, move.1, move.2)
--//       case move_result {
--//         Ok(move) -> {
--//           wisp.ok() |> wisp.string_body(move)
--//         }
--//         Error(reason) -> {
--//           wisp.internal_server_error() |> wisp.string_body(reason)
--//         }
--//       }
--//     }
--//  }
-+ process.sleep_forever()
-+}
-+
-+fn handle_request(request: Request) -> Response {
-+  case wisp.path_segments(request) {
-+    ["move"] -> handle_move(request)
-+    _ -> wisp.ok()
-+  }
-+}
-+fn move_decoder() {
-+  use fen <- decode.field("fen", decode.string)
-+  use turn <- decode.field("turn", chess.player_decoder())
-+  use failed_moves <- decode.field("failed_moves", decode.list(decode.string))
-+  decode.success(#(fen, turn, failed_moves))
-+}
-+
-+fn handle_move(request: Request) -> Response {
-+  use body <- wisp.require_string_body(request)
-+
-+  let decode_result = json.parse(body, move_decoder())
-+  case decode_result {
-+    Error(_) -> {
-+      io.println("Failed to decode JSON")
-+      wisp.bad_request()
-+    }
-+    Ok(move) -> {
-+      let move_result = chess.move(move.0, move.1, move.2)
-+      case move_result {
-+        Ok(move) -> {
-+          wisp.ok() |> wisp.string_body(move)
-+        }
-+        Error(reason) -> {
-+          wisp.internal_server_error() |> wisp.string_body(reason)
-+        }
-+      }
-+    }
-+ }
+-
+-  // Uncomment this block to pass the first stage
+-  //
+-  // glen.serve(8000, handle_request)
++  glen.serve(8000, handle_request)
  }
+
+ fn handle_request(request: glen.Request) -> Promise(glen.Response) {
+   case glen.path_segments(request) {
+     ["move"] -> handle_move(request)
+     _ -> glen.response(status.ok) |> promise.resolve
+   }
+ }
+
+ fn move_decoder() {
+   use fen <- decode.field("fen", decode.string)
+   use turn <- decode.field("turn", chess.player_decoder())
+   use failed_moves <- decode.field("failed_moves", decode.list(decode.string))
+   decode.success(#(fen, turn, failed_moves))
+ }
+
+ fn handle_move(request: glen.Request) -> Promise(glen.Response) {
+   use body <- glen.require_string_body(request)
+   let decode_result = json.parse(body, move_decoder())
+   case decode_result {
+     Error(_) -> glen.response(status.bad_request) |> promise.resolve
+     Ok(move) -> {
+       let move_result = chess.move(move.0, move.1, move.2)
+       case move_result {
+         Ok(move) ->
