@@ -1,5 +1,5 @@
-slug: "gleam-chess-bot"
-name: "Build your own Gleam Chess Bot"
+slug: "gleam-chess-bot-js"
+name: "Build your own Gleam Chess Bot (JS)"
 short_name: "Chess Bot"
 release_status: "beta"
 visibility: "private"
@@ -193,14 +193,14 @@ stages:
       - Your bot must make moves within the 5 second time limit
     marketing_md: |-
       Create a complete chess engine that can play and win full games.
-  
+
   - slug: "gd8"
     name: "Submit your bot"
     difficulty: easy
     description_md: |-
       In this stage, you'll finalize your submission for the tournament.
 
-      There is an `example.ENTRY.md` file in the starter code that was provided. You will need to rename the file to `ENTRY.md` and fill in the required fields. 
+      There is an `example.ENTRY.md` file in the starter code that was provided. You will need to rename the file to `ENTRY.md` and fill in the required fields.
       You need to mention your name, email and the URL to your repository.
 
       If you don't intend to participate in the tournament, you don't need to fill the details.
@@ -214,4 +214,3 @@ stages:
       - Please do not remove the `example.ENTRY.md` file, before you are ready to submit.
     marketing_md: |-
       Submit your bot to the tournament.
-  
