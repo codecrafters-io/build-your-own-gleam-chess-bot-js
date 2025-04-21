@@ -7,4 +7,5 @@
 # Learn more: https://codecrafters.io/program-interface
 
 set -e # Exit on failure
+
 exec deno run --allow-net ./build/dev/javascript/chess_bot/chess_bot.mjs
