@@ -23,4 +23,4 @@ set -e # Exit early if any commands fail
 # - Edit this to change how your program runs locally
 # - Edit .codecrafters/run.sh to change how your program runs remotely
 echo "main()" >> build/dev/javascript/chess_bot/chess_bot.mjs
-deno --allow-net build/dev/javascript/chess_bot/chess_bot.mjs
+deno run --allow-net build/dev/javascript/chess_bot/chess_bot.mjs

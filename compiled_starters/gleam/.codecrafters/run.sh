@@ -9,4 +9,4 @@
 set -e # Exit on failure
 
 echo "main()" >> build/dev/javascript/chess_bot/chess_bot.mjs
-deno --allow-net build/dev/javascript/chess_bot/chess_bot.mjs
+deno run --allow-net build/dev/javascript/chess_bot/chess_bot.mjs
