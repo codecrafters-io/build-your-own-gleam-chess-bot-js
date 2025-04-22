@@ -7,12 +7,7 @@ import chess_bot/chess
 import gleam/io
 
 pub fn main() {
-  // You can use print statements as follows for debugging, they'll be visible when running tests.
-  io.println("Logs from your program will appear here!")
-
-  // Uncomment this block to pass the first stage
-  //
-  // glen.serve(8000, handle_request)
+  glen.serve(8000, handle_request)
 }
 
 fn handle_request(request: glen.Request) -> Promise(glen.Response) {

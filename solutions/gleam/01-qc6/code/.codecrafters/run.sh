@@ -7,4 +7,6 @@
 # Learn more: https://codecrafters.io/program-interface
 
 set -e # Exit on failure
-exec ./build/erlang-shipment/entrypoint.sh run "$@"
+
+echo "main()" >> build/dev/javascript/chess_bot/chess_bot.mjs
+deno run --allow-net build/dev/javascript/chess_bot/chess_bot.mjs

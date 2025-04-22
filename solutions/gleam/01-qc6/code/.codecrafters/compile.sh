@@ -8,4 +8,5 @@
 
 set -e # Exit on failure
 
-gleam export erlang-shipment
+gleam deps download
+gleam build --target javascript

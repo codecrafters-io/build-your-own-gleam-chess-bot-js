@@ -1,6 +1,6 @@
 # build-your-own-gleam-chess-bot
 
-Content for the "Build your own Gleam Chess Bot" challenge
+Content for the "Build your own Gleam Chess Bot (JS)" challenge
 
 ### Setup
 
