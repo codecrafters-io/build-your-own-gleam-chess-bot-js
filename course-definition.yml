@@ -57,7 +57,7 @@ marketing:
         Didn't even know that was possible!
 
 stages:
-  - slug: "si0"
+  - slug: "qc6"
     name: "Respond to /move request"
     difficulty: easy
     description_md: |-
@@ -96,7 +96,7 @@ stages:
     marketing_md: |-
       In this stage, you'll create a basic HTTP server that can respond to chess move requests.
 
-  - slug: "xt9"
+  - slug: "zo3"
     name: "Respond with an opening"
     difficulty: medium
     description_md: |-
@@ -125,7 +125,7 @@ stages:
     marketing_md: |-
       Make your bot play real chess moves by implementing a simple opening strategy.
 
-  - slug: "wd4"
+  - slug: "xs2"
     name: "Bratko-Kopec test"
     difficulty: hard
     description_md: |-
@@ -159,7 +159,7 @@ stages:
     marketing_md: |-
       Test your bot's tactical abilities against the famous Bratko-Kopec test positions.
 
-  - slug: "zz5"
+  - slug: "ix8"
     name: "Win at Chess"
     difficulty: hard
     description_md: |-
@@ -194,7 +194,7 @@ stages:
     marketing_md: |-
       Create a complete chess engine that can play and win full games.
 
-  - slug: "gd8"
+  - slug: "dx9"
     name: "Submit your bot"
     difficulty: easy
     description_md: |-
