@@ -1,7 +1,7 @@
 ![progress-banner](https://codecrafters.io/landing/images/default_progress_banners/gleam-chess-bot.png)
 
 This is a starting point for {{language_name}} solutions to the
-["Build Your Own Gleam Chess Bot JS)" Challenge](https://codecrafters.io/challenges/gleam-chess-bot).
+["Build Your Own Gleam Chess Bot (JS)" Challenge](https://codecrafters.io/challenges/gleam-chess-bot).
 
 In this challenge, you'll build a chess bot that's capable of parsing FEN
 strings and making valid chess moves.
