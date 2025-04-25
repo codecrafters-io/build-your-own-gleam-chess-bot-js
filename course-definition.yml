@@ -15,8 +15,11 @@ description_md: |-
 
   When you complete this CodeCrafters challenge, you'll automatically be enrolled in the tournament.
 
+  This challenge is specifically for Gleam targeting JavaScript.
+  If you're interested in building your bot using Gleam targeting Erlang/OTP, you can find that option [here](https://app.codecrafters.io/courses/gleam-chess-bot/overview).
+
 short_description_md: |-
-  Build a chess bot in Gleam
+  Build a chess bot in Gleam (targeting JavaScript)
 
 completion_percentage: 5
 
