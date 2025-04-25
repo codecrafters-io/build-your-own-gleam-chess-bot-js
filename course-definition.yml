@@ -64,6 +64,9 @@ stages:
     name: "Respond to /move request"
     difficulty: easy
     description_md: |-
+      This challenge is specifically for building your bot using Gleam targeting JavaScript.
+      If you're interested in building your bot using Gleam targeting Erlang/OTP, you can find that option [here](https://app.codecrafters.io/courses/gleam-chess-bot/overview).
+
       In this stage, you'll implement a basic HTTP server that responds to POST requests at the `/move` endpoint.
 
       ### The /move endpoint
