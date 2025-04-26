@@ -33,8 +33,7 @@ completion_message_markdown: |-
 
 languages:
   - slug: "gleam"
-    release_status: "alpha"
-    alpha_tester_usernames: ["isaacharrisholt", "gg-ryan"]
+    release_status: "beta"
 
 marketing:
   difficulty: medium
