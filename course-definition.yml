@@ -153,8 +153,7 @@ stages:
 
       ### Tests
 
-      Your bot will be tested against a selection of Bratko-Kopec test positions. It must find good moves
-      that maintain or improve its position.
+      Your bot will be tested against a selection of Bratko-Kopec test positions. It must find valid moves.
 
       ### Notes
 
