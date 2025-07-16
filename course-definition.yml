@@ -62,159 +62,29 @@ stages:
   - slug: "qc6"
     name: "Respond to /move request"
     difficulty: easy
-    description_md: |-
-      This challenge is specifically for building your bot using Gleam targeting JavaScript.
-      If you're interested in building your bot using Gleam targeting Erlang/OTP, you can find that option [here](https://app.codecrafters.io/courses/gleam-chess-bot/overview).
-
-      In this stage, you'll implement a basic HTTP server that responds to POST requests at the `/move` endpoint.
-
-      ### The /move endpoint
-
-      The server should accept JSON requests in the following format:
-
-      ```json
-      {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "turn": "white",
-        "failed_moves": []
-      }
-      ```
-
-      Here are what the fields mean:
-
-      - `fen`: The current state of the board in [Forsyth-Edwards Notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
-      - `turn`: Whose turn it is to move. Either "white" or "black".
-      - `failed_moves`: A list of moves that your bot attempted to make for this turn, but were not legal moves.
-
-      To pass this stage you can respond with a hardcoded legal chess move in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)), such as "e4".
-
-      ### Tests
-
-      The tester will send a POST request to your server at `http://localhost:8000/move` with a valid chess position.
-
-      Your server should respond with a 200 OK status code and a valid chess move in the response body.
-
-      ### Notes
-
-      - The server must listen on port 8000
-      - The response should be a plain text string containing just the move
     marketing_md: |-
       In this stage, you'll create a basic HTTP server that can respond to chess move requests.
 
   - slug: "zo3"
     name: "Respond with an opening"
     difficulty: medium
-    description_md: |-
-      In this stage, you'll implement a simple opening strategy.
-
-      ### How to respond with an opening
-
-      Your bot should:
-
-      1. Parse the [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) string to understand the current board position
-      2. Check if it's playing as white or black
-      3. Make a valid opening move based on the position
-
-      For example, as white you might want to play 1.e4, and as black you might respond to 1.e4 with 1...e5.
-
-      ### Tests
-
-      The tester will send multiple positions from common chess openings. Your bot must respond with legal moves
-      that follow basic chess rules.
-
-      ### Notes
-
-      - The move must be legal according to chess rules
-      - The move must be in [SAN notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess))
-      - If a move is not legal, it will be added to the `failed_moves` list in subsequent requests
     marketing_md: |-
       Make your bot play real chess moves by implementing a simple opening strategy.
 
   - slug: "xs2"
     name: "Bratko-Kopec test"
     difficulty: hard
-    description_md: |-
-      In this stage, your bot will be tested against some of the [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) positions.
-
-      ### Bratko-Kopec test
-
-      The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a famous test position set
-      used to evaluate chess engines.
-
-      To pass these tests, you'll need to implement more sophisticated move selection logic. Some approaches
-      you might consider:
-
-      - Material counting
-      - Position evaluation
-      - Simple search algorithms
-      - Pattern matching for tactical motifs
-
-      <!-- TODO: Isaac to review, we weren't super sure of this list -->
-
-      ### Tests
-
-      Your bot will be tested against a selection of Bratko-Kopec test positions. It must find valid moves.
-
-      ### Notes
-
-      - The positions will be complex tactical positions
-      - Your bot should aim to find moves that maintain material equality or gain material
-      - Simple material counting may not be sufficient - consider piece activity and position
     marketing_md: |-
       Test your bot's tactical abilities against the famous Bratko-Kopec test positions.
 
   - slug: "ix8"
     name: "Win at Chess"
     difficulty: hard
-    description_md: |-
-      In this final stage, your bot will be tested against some of the [Win at Chess](https://www.chessprogramming.org/Win_at_Chess) positions.
-
-      ### Win at Chess
-
-      The [Win at Chess](https://www.chessprogramming.org/Win_at_Chess) positions are a set of test positions that are commonly
-      used to evaluate chess engines.
-
-      Some techniques you might want to implement to pass these tests:
-
-      - Minimax search with alpha-beta pruning
-      - Position evaluation considering:
-        - Material
-        - Piece activity
-        - King safety
-        - Pawn structure
-      - Opening book
-      - Endgame tablebases
-
-      <!-- TODO: Isaac to review, we weren't super sure of this list -->
-
-      ### Tests
-
-      The tester will test your bot against a selection of Win at Chess positions.
-
-      ### Notes
-
-      - Games will be played with standard chess time controls
-      - Your bot must make moves within the 5 second time limit
     marketing_md: |-
       Create a complete chess engine that can play and win full games.
 
   - slug: "dx9"
     name: "Submit your bot"
     difficulty: easy
-    description_md: |-
-      In this stage, you'll finalize your submission for the tournament.
-
-      There is an `example.ENTRY.md` file in the starter code that was provided. You will need to rename the file to `ENTRY.md` and fill in the required fields.
-      You need to mention your name and email.
-
-      If you don't intend to participate in the tournament, you don't need to fill the details.
-
-      ### Tests
-
-      The tester will test for the presence of the `ENTRY.md` file in your repository.
-
-      ### Notes
-
-      - Please do not remove the `example.ENTRY.md` file, before you are ready to submit.
     marketing_md: |-
       Submit your bot to the tournament.
