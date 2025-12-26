@@ -1,7 +1,7 @@
 slug: "gleam-chess-bot-js"
 name: "Build your own Gleam Chess Bot (JS)"
 short_name: "Chess Bot"
-release_status: "beta"
+release_status: "deprecated"
 visibility: "private"
 
 # TODO: Isaac to review, this appears on:
