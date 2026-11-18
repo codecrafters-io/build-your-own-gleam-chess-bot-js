@@ -8,15 +8,13 @@ visibility: "private"
 # - The unauthed course overview page (https://app.codecrafters.io/courses/gleam-chess-bot/overview)
 # - The "Introduction" page when logged in (https://app.codecrafters.io/courses/gleam-chess-bot/introduction)
 description_md: |-
-  Welcome to the inaugural [Unofficial Gleam Chess Tournament](https://github.com/isaacharrisholt/gleam-chess-tournament)!
+  How does a chess bot turn a board position into a legal move?
 
-  This is a friendly competition to see who can create the best chess bot in the [Gleam programming language](https://gleam.run). Once submissions
-  are closed, the tournament will be turned into a Twitch stream or YouTube video on [my channel](https://www.youtube.com/IsaacHarrisHolt).
+  It interprets the position, identifies legal moves, and uses a strategy to choose among them. You'll build that decision in [Gleam](https://gleam.run), behind an HTTP server targeting JavaScript on Deno. Develop an opening strategy, improve tactical play across two position sets, and prepare an entry file.
 
-  When you complete this CodeCrafters challenge, you'll automatically be enrolled in the tournament.
+  This deprecated challenge was created for the [Unofficial Gleam Chess Tournament](https://github.com/isaacharrisholt/gleam-chess-tournament), whose published deadline was June 8, 2025. The original announcement links to [Isaac Harris-Holt's channel](https://www.youtube.com/IsaacHarrisHolt). A separate [Erlang/OTP-target challenge](https://app.codecrafters.io/courses/gleam-chess-bot/overview) uses the other backend.
 
-  This challenge is specifically for Gleam targeting JavaScript.
-  If you're interested in building your bot using Gleam targeting Erlang/OTP, you can find that option [here](https://app.codecrafters.io/courses/gleam-chess-bot/overview).
+  You'll practice reading chess positions, validating moves, and connecting Gleam logic to an HTTP interface.
 
 short_description_md: |-
   Build a chess bot in Gleam (targeting JavaScript)

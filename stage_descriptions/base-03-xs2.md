@@ -1,26 +1,60 @@
-In this stage, your bot will be tested against some of the [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) positions.
+Your bot has an opening strategy. In this stage, you'll improve its tactical
+move selection using positions from the Bratko-Kopec test set.
 
-### Bratko-Kopec test
+### Positions beyond the opening
 
-The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a famous test position set
-used to evaluate chess engines.
+The [Bratko-Kopec test](https://www.chessprogramming.org/Bratko-Kopec_Test) is a
+collection of positions used to assess chess engines. Tactics are short
+sequences that create or answer threats, such as capturing a piece or
+threatening checkmate. Aim to choose legal moves that preserve or gain material,
+the pieces available to each side.
 
-To pass these tests, you'll need to implement more sophisticated move selection logic. Some approaches
-you might consider:
+Each request supplies an independent position. It may be either player's turn,
+and pieces may already have moved or been captured. A legal move must follow the
+piece's movement rules, respect occupied squares, and leave its own king out of
+check. Choose from the supplied position instead of assuming every request
+continues the same game.
 
-- Material counting
-- Position evaluation
-- Simple search algorithms
-- Pattern matching for tactical motifs
+### FEN state and move legality
 
-<!-- TODO: Isaac to review, we weren't super sure of this list -->
+Alongside the board and side to move, FEN records castling rights and an
+en-passant target. Castling moves a king and a rook in one turn. Castling rights
+record whether those pieces retain permission to castle. Occupied squares or
+check can still prevent that move. The en-passant target records the square
+crossed when the immediately preceding move advanced a pawn two squares, which
+may allow a special pawn capture. A dash means no rights or target in that
+field.
+
+These positions often contain only those first four FEN fields. The two move
+counters present in a full six-field FEN may be omitted, as in the example
+below. Accept that form as well as the full form already shown.
+
+Keep the existing Gleam helper and HTTP interface. Improve how your bot chooses
+among legal moves. A position evaluation estimates which side is better off,
+while search examines possible moves and replies. Material balance and piece
+activity, such as control of useful squares, can inform your choice. How you
+represent and evaluate positions, and whether to search replies, remain yours to
+decide.
 
 ### Tests
 
-Your bot will be tested against a selection of Bratko-Kopec test positions. It must find valid moves.
+The tester starts `./your_program.sh`, then sends a selection of positions from
+the set to `POST /move`. With the server running, try this example:
 
-### Notes
+```sh
+curl -i -X POST http://localhost:8000/move \
+  -H 'Content-Type: application/json' \
+  -d '{"fen":"1k1r4/pp1b1R2/3q2pp/4p3/2B5/4Q3/PPP2B2/2K5 b - -","turn":"black","failed_moves":[]}'
+```
 
-- The positions will be complex tactical positions
-- Your bot should aim to find moves that maintain material equality or gain material
-- Simple material counting may not be sufficient - consider piece activity and position
+Return HTTP 200 within five seconds and a legal move as plain text. For this
+position, one accepted body is:
+
+```text
+Qd1+
+```
+
+The linked Bratko-Kopec record lists `Qd1+` for this position. `Q` identifies
+the queen, and `+` means check. Use the reference positions to assess your
+choices. The automated checks accept legal moves without comparing them to the
+listed tactical solutions or measuring material gain.
